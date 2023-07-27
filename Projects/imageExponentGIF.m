@@ -1,10 +1,12 @@
-function [cell, recurs_cell] = imageExponentGIF(fileName,factor,stepSize)
+function [cell, altcell, recurs_cell] = imageExponentGIF(fileName,factor,stepSize)
 image = imread(fileName);
 image = im2double(image);
 expimage = exp(image);
 recurs_expimage = image;
+onesImage = ones(size(image));
 
 cell={};
+altcell={};
 recurs_cell={};
 
 for x=1:stepSize:factor
@@ -15,6 +17,9 @@ for x=1:stepSize:factor
 % expimage = exp(image)+((2*pi)*x/factor)*exp(image);
 temp_expimage = ((2*pi)*x/factor)*expimage;
 cell{end+1} = temp_expimage - floor(temp_expimage);
+
+altcell{end+1} = onesImage - (temp_expimage - floor(temp_expimage));
+
 
 temp_expimagerecurs = exp(recurs_expimage);
 recurs_expimage=temp_expimagerecurs - floor(temp_expimagerecurs);
@@ -30,6 +35,8 @@ for x=factor:-1*stepSize:1
 % expimage = exp(image)+((2*pi)*x/factor)*exp(image);
 temp_expimage = ((2*pi)*x/factor)*expimage;
 cell{end+1} = temp_expimage - floor(temp_expimage);
+
+altcell{end+1} = onesImage - (temp_expimage - floor(temp_expimage));
 
 temp_expimagerecurs = exp(recurs_expimage);
 recurs_expimage=temp_expimagerecurs - floor(temp_expimagerecurs);
