@@ -1,2 +1,2 @@
-# Matlab Projects
- Matlab projects and associated import/export media, data, etc.
+# MATLAB Projects
+ MATLAB projects and associated import/export media, data, etc.
