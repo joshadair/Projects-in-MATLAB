@@ -6,9 +6,11 @@ compressed_cell = {};
 fullsize_cell = {};
 
 if isa(input_object,'numeric') == 1
-    input_object{end+1} = input_object;
+    input_temp = input_object;
+    input_object = {};
+    input_object{end+1} = input_temp;
 elseif exist(input_object) == 2
-    input_object = convert_IMG_VID(input_object); 
+    input_object = imgvid2cell(input_object); 
 end
 
 input_image = im2double(input_object{1});
@@ -18,7 +20,7 @@ div_cols= divisors(cols);
 div_shared = intersect(div_rows,div_cols);    
 div_shared_text = regexprep(num2str(div_shared),' +',' ');    
 prompt = cat(2,'Grain size options: ',div_shared_text);        
-prompt = [prompt char(10)];    
+prompt = [prompt char(10) 'Enter value(s) from above or use "all":'];    
 new_pixelGrain = input(prompt,'s');    
     
 if strcmp(new_pixelGrain,'all') == 1        
@@ -31,7 +33,7 @@ if strcmp(new_pixelGrain,'all') == 1
         end
     end   
 else
-   new_pixelGrain = str2num(new_pixelGrain);
+   new_pixelGrain = str2double(new_pixelGrain);
    new_pixelGrain_options = [new_pixelGrain];
    new_pixelGrain_length = length(new_pixelGrain_options);
 end
@@ -55,8 +57,8 @@ for a=1:num_cells
     fullsize_image(:,:,2) = zeros(rows,cols);
     fullsize_image(:,:,3) = zeros(rows,cols);
    
-    for color=1:3     
-        activeRGB=input_image(:,:,color);
+    for clr=1:colors     
+        activeRGB=input_image(:,:,clr);
         for x=1:rSteps                
             for y=1:cSteps               
                 floatColor = 0;                 
@@ -69,11 +71,11 @@ for a=1:num_cells
                 end
                                 
                 new_pixelColor = floatColor/pixelCount;           
-                compressed_image(x,y,color) = new_pixelColor;                
+                compressed_image(x,y,clr) = new_pixelColor;                
 
                 for a=1:new_pixelGrain                    
                     for b=1:new_pixelGrain                                                                                  
-                        fullsize_image((x-1)*new_pixelGrain+a,(y-1)*new_pixelGrain+b,color) = new_pixelColor;                                                    
+                        fullsize_image((x-1)*new_pixelGrain+a,(y-1)*new_pixelGrain+b,clr) = new_pixelColor;                                                    
                     end                    
                 end                
             end            

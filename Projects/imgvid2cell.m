@@ -1,4 +1,4 @@
-function cell = convert_IMG_VID(filename)
+function cell = imgvid2cell(filename)
 cell={};
 
 try
