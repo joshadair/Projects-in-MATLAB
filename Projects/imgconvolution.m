@@ -19,6 +19,10 @@ switch kernel
         kernel = [0 -1 0; -1 5 -1; 0 -1 0];
     case 'edge'
         kernel = [0 -1 0; -1 4 -1;0 -1 0];
+    case 'boxblur'
+        kernel = (1/9)*[1 1 1; 1 1 1; 1 1 1];
+    case 'gaussblur3'
+        kernel = (1/16)*[1 2 1; 2 4 2; 1 2 1];
 end
 
 input_image = input_object{1};
