@@ -1,4 +1,4 @@
-function [t1_combs, t2_combs] = amerfootballscores(s1, s2)
+function [t1_combs,t2_combs] = amerfootballscores(s1,s2)
     t1_combs = [];
     t2_combs = [];
 

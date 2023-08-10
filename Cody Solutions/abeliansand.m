@@ -1,4 +1,4 @@
-function [final,frames] = abeliansand(initial,frames)
+function [final,frames,vid_frames] = abeliansand(initial,frames)
   [row,col] = size(initial);
   
   for r=1:row
@@ -37,21 +37,29 @@ function [final,frames] = abeliansand(initial,frames)
   
   if sum(any(initial>3)) > 0
       frames{end+1} = initial; 
-      [final, frames] = abeliansand(initial,frames);
+      [final,vid_frames,frames] = abeliansand(initial,frames);
   else
       final = initial;
       frames{end+1} = final;
-      for x=1:length(frames)
-          frames{x} = double2rgb(frames{x},jet);
-          frames{x} = imresize(frames{x},[500 500],'box');
+      vid_frames = frames;
+      for x=1:length(vid_frames)
+          vid_frames{x} = linearizeim(vid_frames{x});
+          %vid_frames{x} = double2rgb(vid_frames{x},jet)
+          vid_frames{x} = imresize(vid_frames{x},[400 400],'box');
       end
       
-      for count=1:40
-          frames = cat(2,frames{1},frames);
-          frames{end+1} = frames{end};
+      duration = 60;
+      frame_rate = length(vid_frames)/duration;    
+      for count=1:3*frame_rate          
+          % Trying to create still frames of initial condition; however,
+          % this technically is the first iteration of the pile - need to
+          % try to use "recover" or preserve initial matrix
+          vid_frames = cat(2,vid_frames{1},vid_frames);
+          
+          % Create still frames of stable end condition
+          vid_frames{end+1} = vid_frames{end};
       end 
-       
-      cell2vid(frames,'abeliansand_flow.mp4',20);
+      cell2vid(vid_frames,'abeliansand_flow.mp4',frame_rate);
   end
 
 end
