@@ -1,29 +1,20 @@
-function [rolls, prob_win] = dragondice(x,y,n)
-prob_win = [];
-trial = 1;
-for x=x
-    rolls = zeros(n,3,length(x));
-    me = [];
-    dragon = 0;
+function [rolls, prob_win] = dragondice(x,y,n)   
+rolls = zeros(n,3);     
 
-    for i=1:n   
-        me = randi(y,1,x/y); 
-        tot = sum(me);
-        rolls(i,1,trial) = tot;
-        
-        dragon = randi(x);      
-        rolls(i,2,trial) = dragon;
+for trial=1:n          
+    me = randi(y,1,x/y); 
+    my_total = sum(me);
+    rolls(trial,1) = my_total; 
+    dragon = randi(x,1);
+    rolls(trial,2) = dragon;   
     
-        if sum(me)>=dragon       
-            rolls(i,3,trial) = 1;  
-        else            
-            rolls(i,3,trial) = 0;    
-        end 
-       
-    end     
-    prob_win(end+1) = sum(rolls(:,3,trial))/n;
-    trial = trial+1;
+    if my_total>=dragon                  
+        rolls(trial,3) = 1;         
+    else       
+        rolls(trial,3) = 0;       
+    end    
 end
+prob_win = sum(rolls(:,3))/n;   
 
 end
 
