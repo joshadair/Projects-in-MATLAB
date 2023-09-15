@@ -1,10 +1,8 @@
 function output = normalizesandsize(frames)
 output = frames;
 [max_row,max_col] = size(output{end});
-for i=1:length(output);
-
-    [row,col] = size(output{i});
-    
+for i=1:length(output);  
+    [row,col] = size(output{i});   
     while row<max_row
         switch mod(row,2)
             case 0   
@@ -25,7 +23,7 @@ for i=1:length(output);
         [~,col] = size(output{i});
     end
 end
-output = output;
+
 end
 
         

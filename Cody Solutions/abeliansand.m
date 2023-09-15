@@ -81,8 +81,7 @@ for r=1:row
                 % value > 3, if this happens, there are two options:
                 % 1. 'continue' to preserve current value for later evaluation
                 % 2. Use recursion to cycle back through beginning to trigger
-                % padding statement
-                % This accomodation is important for more accurately preserving 
+                % padding statement. This accomodation is important for more accurately preserving 
                 % thesymmetry of the sandpile through the iterations
                 if r==1 | r==row | c==1 | c==col
                     trigger = 1;
@@ -133,18 +132,19 @@ else
       
     for x=1:length(vid_frames)         
         %vid_frames{x} = linearizeim(vid_frames{x});          
-        vid_frames{x} = double2rgb(vid_frames{x},colorcube);          
+        vid_frames{x} = double2rgb(vid_frames{x},jet);          
         vid_frames{x} = imresize(vid_frames{x},[1000 1000],'box');    
     end
         
     duration = 30;      
-    frame_rate = length(vid_frames)/duration;          
-    for count=1:2*frame_rate          
+    framerate = length(vid_frames)/duration;          
+    for count=1:2*framerate          
         % Create still frames of initial condition
         vid_frames = cat(2,vid_frames{1},vid_frames);                  
         % Create still frames of stable, end condition         
         vid_frames{end+1} = vid_frames{end};
     end
-    cell2vid(vid_frames,'abeliansand_flow.mp4',frame_rate);
+    
+    cell2vid(vid_frames,'abeliansand_flow.mp4',framerate);
 end
 end
