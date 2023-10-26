@@ -1,0 +1,19 @@
+function o = aoc15_10_1(input);
+
+
+for iter=1:40
+    o=[];
+    count=1;
+    for i1=2:length(input)
+        val=input(i1-1);
+        if val==input(i1);
+            count=count+1;
+            continue;
+        elseif 
+            o=[o count val];
+            count=1;
+        end
+    end
+    prev_input=input;
+    input=o;
+end

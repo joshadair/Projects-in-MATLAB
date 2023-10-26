@@ -1,0 +1,19 @@
+function [output = aoc15_9_1(input)
+dest=length(input);
+p=perms(1:dest);
+vals=zeros(length(p),1);
+
+for idx1=1:length(p)
+    val=0;
+    for idx2=1:length(dest)-1
+        val=val+input(p(idx1,idx2),p(idx1,idx2+1));
+    end
+    vals(idx1)=val;
+end
+
+end
+
+
+
+
+

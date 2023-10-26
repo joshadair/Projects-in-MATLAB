@@ -1,11 +1,12 @@
-function output = aoc15_8_1_2(input)
+function output = aoc15_8_2(input)
 output=input;
 
 %output=replace(output,"\\","\");
-output=replace(output,"\\","X");
+output=replace(output,'"',"XX");
 %output=replace(output,'\"','"');
-output=replace(output,'\"','X');
+output=replace(output,'\','XX');
 
+%{
 pat="\x"+alphanumericsPattern(2);
 t3=strfind(output,pat);
 if isempty(t3)==0
@@ -33,7 +34,7 @@ if isempty(t3)==0
         end
     end
 
-
+%}
 
 
 end
