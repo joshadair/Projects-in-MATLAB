@@ -1,4 +1,4 @@
-function out = aoc15_12_1(in)
+function out=aoc15_12_1(in)
 out=[];
 temp=[];
 for i1=1:length(in)
