@@ -41,7 +41,7 @@ while (numel(find(fin>0))>0 & length(iterations)<48)
         c=y_rips(i1);
 
         if r==1 || r==n || c==1 || c==n
-            `
+           `
 
         end
 
@@ -56,65 +56,46 @@ while (numel(find(fin>0))>0 & length(iterations)<48)
 
                 else
                     fin(r-1,c)=fin(r-1,c)+1;
-                    dir(r-1,c)=dir_peb;
+                dir(r-1,c)=dir_peb;
 
                 end
+
+
+                
             case 'e'
                 if c==col
 
                 else
-                    fin(r,c+1)=fin(r,c+1)+1;
-                    dir(r,c+1)=dir_peb;
-
+                    
                 end
+
+
+                fin(r,c+1)=fin(r,c+1)+1;
+
             case 's'
-                if r==row
-
-                else
-                    fin(r+1,c)=fin(r+1,c)+1;
-                    dir(r+1,c)=dir_peb;
-                end
+                fin(r+1,c)=fin(r+1,c)+1;
+                dir(r+1,c)=dir_peb;
             case 'w'
-                if c==1
-
-                else
-                    fin(r,c-1)=fin(r,c-1)+1;
-                    dir(r,c-1)=dir_peb;
-                end
+                fin(r,c-1)=fin(r,c-1)+1;
+                dir(r,c-1)=dir_peb;
             case 'ne'
-                if r==1 || c==1
-
-                else
-                    fin(r-1,c+1)=fin(r-1,c+1)+1;
-                    dir(r-1,c+1)=dir_peb;
-                end
+                fin(r-1,c+1)=fin(r-1,c+1)+1;
+                dir(r-1,c+1)=dir_peb;
             case 'se'
-                if r==row || c==col
-
-                else
-                    fin(r+1,c+1)=fin(r+1,c+1)+1;
-                    dir(r+1,c+1)=dir_peb;
-                end
+                fin(r+1,c+1)=fin(r+1,c+1)+1;
+                dir(r+1,c+1)=dir_peb;
             case 'sw'
-                if r==row || c==1
-
-                else
-                    fin(r+1,c-1)=fin(r+1,c-1)+1;
-                    dir(r+1,c-1)=dir_peb;
-                end
+                fin(r+1,c-1)=fin(r+1,c-1)+1;
+                dir(r+1,c-1)=dir_peb;
             case 'nw'
-                if r==1 || c==1
-
-                else
-                    fin(r-1,c-1)=fin(r-1,c-1)+1;
-                    dir(r-1,c-1)=dir_peb;
-                end
+                fin(r-1,c-1)=fin(r-1,c-1)+1;
+                dir(r-1,c-1)=dir_peb;
             otherwise
 
 
         end
 
-        fin(r,c)=fin(r,c)-1;
+        fin(r,c)=fin(r,c)-1;     
     end
 
     fin(row_i2,col_i2) = 0;
