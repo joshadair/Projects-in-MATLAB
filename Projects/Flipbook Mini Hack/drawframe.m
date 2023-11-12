@@ -28,7 +28,7 @@ for i=1:n
     in=o;
 end
 
-cmp=colormap(slanCM('vivid',max(max(o))));
+cmp=colormap(slanCM('Pastel1',max(max(o))));
 o=ind2rgb(o,cmp);
 o=imresize(o,[1000 1000],'box');
 imshow(o)
