@@ -6,10 +6,10 @@ out(locs_pebbles)=2;
 timer(locs_pebbles)=1;
 frames={};
 frames{end+1}=out;
-n=100;
+n=num_frames;
 
 while numel(find(out>0))>0 && length(frames)<num_frames
-    new_peb=randperm(tablesize^2,1);
+    new_peb=randi(tablesize^2);
     out(new_peb)=2;
     timer(new_peb)=1;
 
@@ -37,6 +37,6 @@ while numel(find(out>0))>0 && length(frames)<num_frames
     frames{end+1}=out;
 end
 
-cell2vid(frames,"ripples.mp4",3);
+cell2vid(frames,"ripples.mp4",5);
 end
 
