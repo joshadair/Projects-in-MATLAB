@@ -1,5 +1,5 @@
-function drawframe_sand(n)
-in=uint8(padarray(7*ones(100),[50 50],0,'both'));
+function drawframe_sand(f)
+in=uint16(padarray(4*ones(100),[25 25],0,'both'));
 o=in;
 [rw,cl]=size(o);
 
@@ -9,8 +9,8 @@ if n>24
 end
 %}
 
-for i=1:n
-    if n==1 
+for i=1:50*f
+    if f==1 
         break;
     else
     for r=1:rw
@@ -28,7 +28,7 @@ for i=1:n
     in=o;
 end
 
-cmp=colormap(slanCM('Pastel1',max(max(o))));
+cmp=colormap(turbo(1+max(max(o))));
 o=ind2rgb(o,cmp);
 o=imresize(o,[1000 1000],'box');
 imshow(o)

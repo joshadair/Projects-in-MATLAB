@@ -1,0 +1,35 @@
+function drawframe(f)
+    % Define some constants
+    N = 200;  % number of points
+    M = 10;   % number of colors
+    s = 0.5;  % scale factor
+    t = f * 0.01;  % time variable
+    xoff = sin(t * 2 * pi);  % x offset
+    yoff = cos(t * 4 * pi);  % y offset
+    scale = 1 + 0.1 * sin(t * 6 * pi);  % scale factor
+    color = @(x, y, t, phase) mod(sin(2pi(x+xoff)(1+0.2sin(t4pi))scale*t + phase) + cos(2pi(y+yoff)(1+0.3cos(t6pi))scalet + phase) + ...
+                            0.5sin(4pi*(x+xoff)(1+0.4sin(t8pi))scale*t + phase) + 0.2cos(6pi*(y+yoff)(1+0.5cos(t10pi))scalet + phase), 1);
+    % Create a colormap with M colors
+    cmap = turbo(M);
+
+    % Initialize the frame
+    frame = zeros(N, N, 3);
+
+    % Loop over each point in the grid
+    for i = 1:N
+        for j = 1:N
+            % Compute the color of the point
+            c = color(x(i, j), y(i, j), f*t, phase);
+
+            % Map the color to the colormap
+            c = cmap(ceil(M*c), :);
+
+            % Assign the color to the frame
+            frame(i, j, :) = c;
+        end
+    end
+
+    % Display the frame
+    imagesc(frame);
+    axis off;
+  
