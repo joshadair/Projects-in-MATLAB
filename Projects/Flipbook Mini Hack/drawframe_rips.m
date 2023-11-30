@@ -1,7 +1,7 @@
 function [rgb,ind]=drawframe_rips(f)
 % set tablesize nxn (ts), number of pebbles (p), output frame (o), and timer
 % matrix (tm)
-ts=100;
+ts=50;
 p=5;
 o=zeros(ts);
 tm=o;
@@ -99,7 +99,6 @@ ind=o;
 %rgb=ind2rgb(rgb,cmp);
 %imshow(rgb)
 b=bar3(ind);
-colorbar
 
 for k = 1:length(b)
     zdata = b(k).ZData;
