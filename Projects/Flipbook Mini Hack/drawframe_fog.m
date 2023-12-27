@@ -11,7 +11,7 @@ function drawframe_fog(nn)
         rng default
         
         % Base vector for pixels
-        x = linspace(-1, 1, 240);
+        x = linspace(-1, 1, 540);
         
         % Make complex 3D noise spectrum -> spectrally shaping using
         % distance. This is expensive so only do once.

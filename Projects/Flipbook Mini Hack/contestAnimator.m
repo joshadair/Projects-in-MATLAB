@@ -5,10 +5,10 @@ function contestAnimator()
     delayTime = 1/framesPerSecond;
     % Create the gif
     for frame = 1:48
-        drawframe_primespiralcol(frame);
+        drawframe_fog(frame);
         fig = gcf(); 
         fig.Units = 'pixels';
-        fig.Position(3:4) = [300,300];
+        fig.Position(3:4) = [540,540];
         im = getframe(fig);
         [A,map] = rgb2ind(im.cdata,256);
         if firstFrame
