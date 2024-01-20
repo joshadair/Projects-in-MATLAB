@@ -1,5 +1,5 @@
 function drawframe_sand(f)
-in=uint16(padarray(4*ones(100),[25 25],0,'both'));
+in=uint16(padarray(4*ones(500),[25 25],0,'both'));
 o=in;
 [rw,cl]=size(o);
 
