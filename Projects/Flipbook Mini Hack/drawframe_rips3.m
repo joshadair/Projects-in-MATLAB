@@ -1,7 +1,6 @@
 function [im,matrix,timer]=drawframe_rips3(f,in_o,in_tm)
-% set tablesize nxn (ts), output image (o), timer matrix (tm), and seed
-% random number generator (rng) so randomized pebbles remain in consistent
-% locations as each frame is generated
+% uses gradient fill for ripples
+
 ts=1000;
 
 if f==1
@@ -29,7 +28,7 @@ if f==1
     cmp=colormap(turbo(1+max(max(im))));
     im=ind2rgb(im,cmp);
     imshow(im)
-    return;
+    return
 end
 
 % pad output and timer with extra space for ripple overflow to be trimmed later
@@ -61,5 +60,5 @@ timer=tm;
 im=uint16(o);
 cmp=colormap(turbo(1+max(max(im))));
 im=ind2rgb(im,cmp);
-%imshow(im)
+imshow(im)
 end

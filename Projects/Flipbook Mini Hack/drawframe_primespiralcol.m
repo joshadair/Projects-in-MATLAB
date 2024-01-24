@@ -1,5 +1,5 @@
-function drawframe_primespiralcol(f)
-sf=10;
+function s=drawframe_primespiralcol(f)
+sf=1;
 numcol=10;
 s=spiral(sf*f);
 for r=1:sf*f
@@ -19,6 +19,6 @@ cmp=colormap(turbo(numcol));
 %cmp=[white;cmp];
 s=uint16(s);
 s=ind2rgb(s,cmp);
-s=imresize(s,[300 300],'box');
-imshow(s)
+%s=imresize(s,[300 300],'box');
+%imshow(s)
 end
