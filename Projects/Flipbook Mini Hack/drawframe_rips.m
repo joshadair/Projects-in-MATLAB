@@ -76,7 +76,7 @@ tm=tm(c-ts/2:c+ts/2,c-ts/2:c+ts/2);
 matrix=o;
 timer=tm;
 
-cmp=colormap(turbo(10));
+cmp=colormap(turbo(max(max(o))));
 im=uint16(o);
 im=ind2rgb(im,cmp);
 %imshow(im)
