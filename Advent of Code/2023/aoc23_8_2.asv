@@ -1,14 +1,15 @@
-function o=aoc23_8_2(in1,in2,in3,script)
+function [o,steps]=aoc23_8_2(in1,in2,in3,script)
 start={'DVA','MPA','TDA','AAA','FJA','XPA'};
 stop={'DGZ','MVZ','CJZ','MSZ','ZZZ','QFZ'};
 stop=sort(stop);
+
 current=start;
 i1=1;
 o=0;
 last='A';
 steps={};
 
-while (string(unique(last))=="Z")==0
+while (string(unique(last))=="Z")==0 && o<5000000
     temp={};
     d=script(i1);
 
@@ -27,8 +28,13 @@ while (string(unique(last))=="Z")==0
         last(end+1)=temp{i2}(end);
     end
 
+
+    if co
+
+
     current=temp;
-    steps(end+1)=
+    %steps{end+1,1}=temp;
+    %steps{end,2}=last;
     if i1==293
         i1=1;
     else
@@ -36,6 +42,8 @@ while (string(unique(last))=="Z")==0
     end
     o=o+1;
 end
+steps{end+1,1}=temp;
+steps{end,2}=last;
 end
 
 
