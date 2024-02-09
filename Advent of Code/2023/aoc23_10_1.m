@@ -1,5 +1,7 @@
-function o=aoc23_10_1(in)
+function [all,o]=aoc23_10_1(in)
 o=zeros(size(in));
+all={};
+all{end+1}=o;
 
 start=find(in=='S');
 [sRow,sCol]=ind2sub(size(in),start);
@@ -7,11 +9,17 @@ pRow=sRow;
 pCol=sCol;
 aRow=sRow;
 aCol=sCol-1;
+%aCol=sCol+1;
 t=1;
+o(start)=1;
+all{end+1}=o;
+
 
 
 while (aRow~=sRow || aCol~=sCol)
-    o(aRow,aCol)=t;
+    %o(aRow,aCol)=t;
+    o(aRow,aCol)=1;
+    all{end+1}=o;
     aVal=in(aRow,aCol);
 
     switch aVal
@@ -73,6 +81,6 @@ while (aRow~=sRow || aCol~=sCol)
             end
     end
     t=t+1;
-end
+    end
 end
 

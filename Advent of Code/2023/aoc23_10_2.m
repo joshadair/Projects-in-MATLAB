@@ -1,12 +1,13 @@
-function [iPoints,o]=aoc23_10_2(in)
+function [xPoly,yPoly,o]=aoc23_10_2(in)
 o=in;
 [row,col]=size(in);
 
 polygon=[];
 for r=1:row
     for c=1:col
-        if in(r,c)>0
-            o(r,c)=1;
+        %if in(r,c)>0
+        if in(r,c)==1
+            %o(r,c)=1;
             polygon=[polygon;[c r]];
         end
     end
@@ -14,6 +15,7 @@ end
 xPoly=polygon(:,1);
 yPoly=polygon(:,2);
 
+%{
 xTest=[];
 yTest=[];
 for r=1:row
@@ -27,7 +29,7 @@ end
 
 [inside]=inpolygon(xTest,yTest,xPoly,yPoly);
 iPoints=[xTest(inside) yTest(inside)];
-
+%}
 
 
 
