@@ -1,4 +1,4 @@
-function [out,hands,bids]=aoc23_7_1(in)
+function [out,hands,bids]=aoc23_7_2(in)
 out=in;
 fives={};
 fours={};
@@ -15,7 +15,36 @@ for i1=1:length(in)
     handV=handV';
     bid=in{i1,2};
 
-    [counts,vals]=groupcounts(handV);
+    [counts,~]=groupcounts(handV);
+    jacks=count(hand,'J');
+
+    if max(counts)==4
+        if jacks==1 || jacks==4
+            counts=5;
+        end
+    elseif length(counts)==2 && all(sort(counts)==[2;3])
+        if jacks==2 || jacks==3
+            counts=5;
+        end
+    elseif length(counts)==3 && all(sort(counts)==[1;1;3])
+        if jacks==3 || jacks==1
+            counts=4;
+        end
+    elseif length(counts)==3 && all(sort(counts)==[1;2;2])
+        if jacks==2
+            counts=4;
+        elseif jacks==1
+            counts=[2;3];
+        end
+    elseif length(counts)==4 && all(sort(counts)==[1;1;1;2])
+        if jacks==2 || jacks==1
+            counts=[1;1;3];
+        end
+    elseif max(counts)==1
+        if jacks==1
+            counts=[1;1;1;2];
+        end
+    end
 
     if counts==5
         out{i1,3}='5';
@@ -25,19 +54,19 @@ for i1=1:length(in)
         out{i1,3}='4';
         fours{end+1,1}=hand;
         fours{end,2}=bid;
-    elseif length(counts)==2 && all(sort(counts)==[2;3])==1
+    elseif length(counts)==2 && all(sort(counts)==[2;3])
         out{i1,3}='FH';
         fullhouse{end+1,1}=hand;
         fullhouse{end,2}=bid;
-    elseif length(counts)==3 && all(sort(counts)==[1;1;3])==1
+    elseif length(counts)==3 && all(sort(counts)==[1;1;3])
         out{i1,3}='3';
         threes{end+1,1}=hand;
         threes{end,2}=bid;
-    elseif length(counts)==3 && all(sort(counts)==[1;2;2])==1
+    elseif length(counts)==3 && all(sort(counts)==[1;2;2])
         out{i1,3}='2P';
         twopair{end+1,1}=hand;
         twopair{end,2}=bid;
-    elseif length(counts)==4 && all(sort(counts)==[1;1;1;2])==1
+    elseif length(counts)==4 && all(sort(counts)==[1;1;1;2])
         out{i1,3}='1P';
         onepair{end+1,1}=hand;
         onepair{end,2}=bid;
@@ -57,9 +86,10 @@ end
 [sorted1PHands,sorted1PBids]=sortedTypes(onepair);
 [sortedHCHands,sortedHCBids]=sortedTypes(highcard);
 
-% sort typed groups
+% function sorts typed groups based on strong card
+
     function [sortedHands,sortedBids]=sortedTypes(in)
-        cardRanks=['A' 'K' 'Q' 'J' 'T' '9' '8' '7' '6' '5' '4' '3' '2'];
+        cardRanks=['A' 'K' 'Q' 'T' '9' '8' '7' '6' '5' '4' '3' '2' 'J']; % problem statement gives (J)acks as weakeast card, change vs part 1
         cardVals=[13  12  11  10  9   8   7   6   5   4   3   2   1];
         trigger=0;
         sortedHands=[];

@@ -1,7 +1,8 @@
-function [xPoly,yPoly,o]=aoc23_10_2(in)
-o=in;
-[row,col]=size(in);
+function n=aoc23_10_2(x,y)
+area=polyarea(x,y);
+n=area+1-length(x)/2;
 
+%{
 polygon=[];
 for r=1:row
     for c=1:col
@@ -15,7 +16,7 @@ end
 xPoly=polygon(:,1);
 yPoly=polygon(:,2);
 
-%{
+
 xTest=[];
 yTest=[];
 for r=1:row

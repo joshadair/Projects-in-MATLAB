@@ -1,10 +1,14 @@
-function [all,o]=aoc23_10_1(in)
+function [all,o,x,y]=aoc23_10_1(in)
 o=zeros(size(in));
 all={};
 all{end+1}=o;
+x=[];
+y=[];
 
 start=find(in=='S');
 [sRow,sCol]=ind2sub(size(in),start);
+x=[x;sCol];
+y=[y;sRow];
 pRow=sRow;
 pCol=sCol;
 aRow=sRow;
@@ -18,6 +22,8 @@ all{end+1}=o;
 
 while (aRow~=sRow || aCol~=sCol)
     %o(aRow,aCol)=t;
+    x=[x;aCol];
+    y=[y;aRow];
     o(aRow,aCol)=1;
     all{end+1}=o;
     aVal=in(aRow,aCol);

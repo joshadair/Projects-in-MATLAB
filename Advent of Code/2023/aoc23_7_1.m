@@ -25,19 +25,19 @@ for i1=1:length(in)
         out{i1,3}='4';
         fours{end+1,1}=hand;
         fours{end,2}=bid;
-    elseif length(counts)==2 && all(sort(counts)==[2;3])==1
+    elseif length(counts)==2 && all(sort(counts)==[2;3])
         out{i1,3}='FH';
         fullhouse{end+1,1}=hand;
         fullhouse{end,2}=bid;
-    elseif length(counts)==3 && all(sort(counts)==[1;1;3])==1
+    elseif length(counts)==3 && all(sort(counts)==[1;1;3])
         out{i1,3}='3';
         threes{end+1,1}=hand;
         threes{end,2}=bid;
-    elseif length(counts)==3 && all(sort(counts)==[1;2;2])==1
+    elseif length(counts)==3 && all(sort(counts)==[1;2;2])
         out{i1,3}='2P';
         twopair{end+1,1}=hand;
         twopair{end,2}=bid;
-    elseif length(counts)==4 && all(sort(counts)==[1;1;1;2])==1
+    elseif length(counts)==4 && all(sort(counts)==[1;1;1;2])
         out{i1,3}='1P';
         onepair{end+1,1}=hand;
         onepair{end,2}=bid;
