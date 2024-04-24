@@ -151,7 +151,7 @@ else
         vid_frames{x}=imresize(vid_frames{x},[1000 1000],'box');    
     end
         
-    duration=30;      
+    duration=45;      
     framerate=length(vid_frames)/duration;          
     for count=1:2*framerate          
         % Create still frames of initial condition

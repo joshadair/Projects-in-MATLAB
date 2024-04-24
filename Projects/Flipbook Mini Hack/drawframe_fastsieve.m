@@ -1,4 +1,4 @@
-function o=drawframe_fastsieve(f)
+function [ind,img]=drawframe_fastsieve(f)
 % pixels correspond to natural numbers with index values being:
 % 1 2 3 4 5
 % 6 7 8 9 10
@@ -24,19 +24,25 @@ while a<m
 end
 
 % update value for color image
-% color based on last digit, need to first replace 1's with index value to
+% color based on last digit, need to first replace 0's with index value to
 % return to prime number value
 l=numel(o);
 for i1=1:l
-    if o(i1)==0
-        o(i1)=mod(i1,10);
-    elseif o(i1)==1
+    if o(i1)==1
         o(i1)=0;
+    elseif o(i1)==0
+        if mod(i1,10)==1
+            o(i1)=10;
+        else
+            o(i1)=mod(i1,10);
+        end
+        
     end
 end
 
 o=o';
-o=ind2rgb(o,turbo(10));
+ind=o;
+img=ind2rgb(ind,turbo(10));
 %imshow(o)
 
 end
