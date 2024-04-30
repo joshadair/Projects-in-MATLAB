@@ -1,4 +1,4 @@
-function [final,frames,vid_frames] = abeliansand(initial,frames,edgecondition)
+function [final,frames,vid_frames]=abeliansand(initial,frames,edgecondition)
 trigger = 0;
 if length(frames) == 0
     frames{end+1} = initial;
@@ -17,7 +17,7 @@ end
 
 [row,col] = size(initial);  
 for r=1:row
-     if trigger == 1;           
+     if trigger == 1           
          trigger = 0;            
          continue;       
      end

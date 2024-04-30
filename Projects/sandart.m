@@ -1,4 +1,4 @@
-function [final,frames,vid_frames] = sandart(initial,frames,edgecondition)
+function [final,frames,vid_frames]=sandart(initial,frames,edgecondition)
 trigger=0;
 if isempty(frames)==1
     frames{end+1}=initial;
@@ -21,7 +21,7 @@ new=initial;
 %while
 
 for r=1:row
-     if trigger==1;           
+     if trigger==1          
          trigger=0;            
          continue;       
      end
@@ -89,7 +89,7 @@ for r=1:row
                 % the symmetry of the sandpile through the iterations
                 % ^^^review...may no longer be relevant with updated
                 % initial/new structure and change from recursion to while
-                if r==1 | r==row | c==1 | c==col
+                if r==1 || r==row || c==1 || c==col
                     trigger=1;
                     %[final,frames,vid_frames] = abeliansand(initial,frames);
                     %continue                                      
@@ -147,19 +147,20 @@ else
       
     for x=1:length(vid_frames)         
         %vid_frames{x} = linearizeim(vid_frames{x});          
-        vid_frames{x}=double2rgb(vid_frames{x},jet);          
+        vid_frames{x}=ind2rgb(vid_frames{x},turbo(10));  
+        %vid_frames{x}=double2rgb(vid_frames{x},turbo(10)); 
         vid_frames{x}=imresize(vid_frames{x},[1000 1000],'box');    
     end
         
-    duration=45;      
-    framerate=length(vid_frames)/duration;          
-    for count=1:2*framerate          
+    duration=45; %seconds     
+    %framerate=length(vid_frames)/duration;          
+    for count=1:ceil(duration*.05)         
         % Create still frames of initial condition
         vid_frames=cat(2,vid_frames{1},vid_frames);                  
         % Create still frames of stable, end condition         
         vid_frames{end+1}=vid_frames{end};
     end
     
-    cell2vid(vid_frames,'abeliansand_flow.mp4',framerate);
+    cell2vid(vid_frames,'abeliansand_flow.mp4',duration);
 end
 end

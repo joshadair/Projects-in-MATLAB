@@ -1,13 +1,15 @@
 function [frames]=pipeart(n)
 frames={};
 out=zeros(n);
+frames{end+1}=out;
 start=randi(n^2);
 out(start)=1;
+frames{end+1}=out;
 [row,col]=ind2sub(n,start);
 prev=0;
 counter=2;
 
-while any(out,'all')
+while ~all(out,'all')
     next=[1,2,3,4];
     if row==1 && col==1
         next=[2,3];
@@ -50,7 +52,7 @@ while any(out,'all')
     frames{end+1}=out;
 end
 
-cell2vid(frames,'pipeart.mp4',30);
+%cell2vid(frames,'pipeart.mp4',60);
 
 end
 
