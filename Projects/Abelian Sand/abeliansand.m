@@ -83,7 +83,7 @@ for r=1:row
                 % 2. Use recursion to cycle back through beginning to trigger
                 % padding statement. This accomodation is important for more accurately preserving 
                 % thesymmetry of the sandpile through the iterations
-                if r==1 | r==row | c==1 | c==col
+                if r==1 || r==row || c==1 || c==col
                     trigger = 1;
                     %[final,frames,vid_frames] = abeliansand(initial,frames);
                     %continue                                      

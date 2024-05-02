@@ -1,27 +1,27 @@
 function [compressed_cell,fullsize_cell] = pixelate(input_object)
 
-image_filetypes = ['.BMP .GIF .HDF .JPEG .JPG .JP2 .JPF .JPX .J2C .J2K .PBM .PCX .PGM .PNG .PNM .PPM .RAS .TIFF .TIF .XWD .CUR .ICO'];
-vid_filetypes = ['.AVI .MJ2 .MPG .ASF .WMV .MP4 .M4V .MOV .MPG'];
-compressed_cell = {};
-fullsize_cell = {};
+image_filetypes=['.BMP .GIF .HDF .JPEG .JPG .JP2 .JPF .JPX .J2C .J2K .PBM .PCX .PGM .PNG .PNM .PPM .RAS .TIFF .TIF .XWD .CUR .ICO'];
+vid_filetypes=['.AVI .MJ2 .MPG .ASF .WMV .MP4 .M4V .MOV .MPG'];
+compressed_cell={};
+fullsize_cell={};
 
 if isa(input_object,'numeric') == 1
-    input_temp = input_object;
-    input_object = {};
-    input_object{end+1} = input_temp;
-elseif exist(input_object) == 2
-    input_object = imgvid2cell(input_object); 
+    input_temp=input_object;
+    input_object={};
+    input_object{end+1}=input_temp;
+elseif exist(input_object)==2
+    input_object=imgvid2cell(input_object); 
 end
 
-input_image = im2double(input_object{1});
-[rows,cols,colors] = size(input_image);        
-div_rows = divisors(rows);            
-div_cols= divisors(cols);       
-div_shared = intersect(div_rows,div_cols);    
-div_shared_text = regexprep(num2str(div_shared),' +',' ');    
-prompt = cat(2,'Grain size options: ',div_shared_text);        
-prompt = [prompt char(10) 'Enter value(s) from above or use "all":'];    
-new_pixelGrain = input(prompt,'s');    
+input_image=im2double(input_object{1});
+[rows,cols,colors]=size(input_image);        
+div_rows=divisors(rows);            
+div_cols=divisors(cols);       
+div_shared=intersect(div_rows,div_cols);    
+div_shared_text=regexprep(num2str(div_shared),' +',' ');    
+prompt=cat(2,'Grain size options: ',div_shared_text);        
+prompt=[prompt char(10) 'Enter value(s) from above or use "all":'];    
+new_pixelGrain=input(prompt,'s');    
     
 if strcmp(new_pixelGrain,'all') == 1        
     new_pixelGrain_options = cat(2,div_shared,flip(div_shared));        
