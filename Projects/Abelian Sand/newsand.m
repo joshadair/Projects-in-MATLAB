@@ -1,9 +1,4 @@
-function [frames,vid_frames]=newsand(initial,edgecondition)
-list={'Parula','Turbo','HSV','Hot','Cool','Winter','Spring','Summer','Autumn','Sky','Abyss'};
-[indx,tf]=listdlg('PromptString',"Please select a colormap from the list below...",'ListString',list,'SelectionMode','single');
-color=cat(2,list{indx},'(10)');
-cmap=colormap(color);
-
+function [frames]=newsand(initial,edgecondition)
 frames={};
 frames{end+1}=initial;
 
@@ -95,16 +90,6 @@ while max(max(new))>3
         end
     end
     frames{end+1}=new;
-end
-
-if edge==2
-    frames=normalizesandsize(frames);
-end
-
-vid_frames={};
-for i1=1:numel(frames)
-    temp=ind2rgb(frames{i1},cmap);
-    vid_frames{i1}=imresize(temp,[1080 1080],'box');
 end
 
 end
