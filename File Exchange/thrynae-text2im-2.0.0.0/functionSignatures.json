@@ -1,0 +1,36 @@
+{
+    "_schemaVersion": "1.0.0",
+    "_v_text2im":"2.0.0",
+    "text2im":
+    {
+        "inputs":
+        [
+            {"name":"text", "kind":"required",
+             "type":[["char"],["string"],["cell"]],
+             "purpose":"Text to be converted to image"},
+            {"mutuallyExclusiveGroup":
+             [
+                 [
+                     {"name":"font", "kind":"positional",
+                      "type":[["char","row"],["string"],["cell"]],
+                      "purpose":"Name of the font used"}
+                 ],
+                 [
+                     {"name":"OptionStruct", "kind":"positional",
+                      "type":["struct"],
+                      "purpose":"Struct containing the options"}
+                 ],
+                 [
+                     {"name":"font", "kind":"positional",
+                      "type":[["char","row"],["string"],["cell"]],
+                      "purpose":"Name of the font used"},
+                     {"name":"TranslateRichText", "kind":"namevalue",
+                      "type":["logical","scalar","choices={true,false}"],
+                      "purpose":"Convert rich text to supported characters"}
+                 ]
+             ]
+            }
+        ]
+    }
+}
+
