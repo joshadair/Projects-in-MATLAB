@@ -1,11 +1,13 @@
-function [frames]=newsand(initial,edgecondition)
-frames={};
-frames{end+1}=initial;
+function frames=newsand(initial,edgecondition)
 
 if strcmp(edgecondition,'falloff')==1
     edge=1;
+    frames=[];
+    frames(:,:,1)=initial;
 elseif strcmp(edgecondition,'grow')==1
     edge=2;
+    frames={};
+    frames{end+1}=initial;
 end
 [row,col]=size(initial);
 new=initial;
@@ -73,6 +75,7 @@ while max(max(new))>3
                 end
             end
         end
+        frames=cat(3,frames,new);
     end
 
     if edge==2
@@ -88,8 +91,9 @@ while max(max(new))>3
                 end
             end
         end
+        frames{end+1}=new;
     end
-    frames{end+1}=new;
+    
 end
 
 end
