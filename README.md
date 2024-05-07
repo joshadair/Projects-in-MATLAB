@@ -1,12 +1,12 @@
 # MATLAB Projects
  MATLAB projects and associated import/export media, data, etc.
 
- Directory Summary
-	
-	-> Cody Solutions - Selection of solutions to MathWorks' Cody problems (https://www.mathworks.com/matlabcentral/cody/)
-	-> Projects - MATLAB functions inspired by personal projects, primarily involve image processing and manipulation
- 	-> Advent of Code - Solutions to yearly AoC challenge
-  	-> File Exchange - Repository for functions gathered from MathWorks' File Exchange (https://www.mathworks.com/matlabcentral/fileexchange/)
+ Directory Summary	
+ 	-> Advent of Code - Solutions to yearly AoC challenge (adventofcode.com/)
+  	-> Cody Solutions - Solutions to MathWorks' Cody problems (https://www.mathworks.com/matlabcentral/cody/)
+  	-> File Exchange - Functions gathered from MathWorks' File Exchange (https://www.mathworks.com/matlabcentral/fileexchange/)
+   	-> Project Euler - Solutions to Project Euler problems (https://projecteuler.net/)
+  	-> Projects - Personal projects, primarily involve image processing and manipulation
 
 Instantly access and explore repository functions using MATLAB online--no license necessarty!
 
