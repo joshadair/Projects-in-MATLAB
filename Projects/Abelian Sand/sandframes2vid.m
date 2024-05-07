@@ -1,4 +1,5 @@
 function average=sandframes2vid(frames,edgeCondition,filename,duration)
+set(0,'DefaultFigureVisible','off');
 [row,col]=size(frames(:,:,end));
 average=zeros(row,col,3);
 video=VideoWriter(filename,'MPEG-4');
@@ -8,13 +9,6 @@ open(video);
 
 cmapList={'Parula','Turbo','HSV','Hot','Cool','Winter','Spring','Summer','Autumn','Sky','Abyss'};
 [indx,~]=listdlg('PromptString',"Please select a colormap from the list below...",'ListString',cmapList,'SelectionMode','single');
-
-prompt={'How many colors to use?'};
-numCol=inputdlg(prompt,'',1,"10");
-
-cmapName=cat(2,cmapList{indx},'(',char(numCol),')');
-cmap=colormap(cmapName);
-cmap(end+1,:)=[1 1 1];
 
 if strcmp(edgeCondition,'grow')==1
     frames=normalizesandsize(frames);
@@ -27,6 +21,14 @@ if strcmp(edgeCondition,'grow')==1
 end
 
 if strcmp(edgeCondition,'falloff')==1
+    %numCol=max(max(max(frames)))-1;
+    numCol=max(max(max(frames)));
+    %cmapName=cat(2,cmapList{indx},'(',num2str(numCol),')');
+    %cmap=colormap(cmapName);
+    cmap=slanCM('toxic',numCol);
+    cmap(1,:)=[0 0 0];
+    %cmap(end+1,:)=[1 1 1];
+
     for i1=1:ceil(length(frames)*.07)
         frames=cat(3,frames(:,:,1),frames);
         frames=cat(3,frames,frames(:,:,end));
