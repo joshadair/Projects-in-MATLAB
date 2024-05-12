@@ -9,7 +9,7 @@
    	-> Project Euler - Solutions to Project Euler problems (https://projecteuler.net/)
   	-> Projects - Personal projects, primarily involve image processing and manipulation
 
-Instantly access and explore repository functions using MATLAB online--no license necessarty!
+Instantly access and explore repository functions using MATLAB online--no license necessary!
 
 [![Open in MATLAB Online](https://www.mathworks.com/images/responsive/global/open-in-matlab-online.svg)](https://matlab.mathworks.com/open/github/v1?repo=jksafe/MATLAB-Projects)
 
