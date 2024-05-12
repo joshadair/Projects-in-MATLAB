@@ -1,5 +1,5 @@
-# MATLAB Projects
- MATLAB projects and associated import/export media, data, etc.
+# Projects in MATLAB
+ Projects written in MATLAB and associated import/export media, data, etc.
 
  Directory Summary	
  
