@@ -2,7 +2,7 @@ function [final,frames,vid_frames]=sandartimg(image,initial,frames,edgecondition
 
 if isempty(initial)
     initial=padarray(image,[10 10]);
-else
+elseif mod(length(frames),10)==0
     initial(11:end-10,11:end-10)=image;
 end
 
@@ -151,8 +151,8 @@ if numel(frames)>1000 || max(max(new))<=3
 
     for x=1:length(vid_frames)         
         %vid_frames{x} = linearizeim(vid_frames{x});          
-        vid_frames{x}=ind2rgb(vid_frames{x},turbo(10));          
-        vid_frames{x}=imresize(vid_frames{x},[1000 1000],'box');    
+        vid_frames{x}=ind2rgb(vid_frames{x},turbo(7));          
+        vid_frames{x}=imresize(vid_frames{x},[540 540],'box');    
     end
         
     duration=45; %seconds      

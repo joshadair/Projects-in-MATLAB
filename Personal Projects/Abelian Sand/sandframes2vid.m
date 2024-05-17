@@ -1,5 +1,5 @@
 function average=sandframes2vid(frames,edgeCondition,filename,duration)
-set(0,'DefaultFigureVisible','off');
+%set(0,'DefaultFigureVisible','off');
 if strcmp(edgeCondition,'grow')==1
     frames=normalizesandsize(frames);
 end
@@ -18,10 +18,9 @@ numCol=max(max(max(frames)));
 %cmapName=cat(2,cmapList{indx},'(',num2str(numCol),')');
 %cmap=colormap(cmapName);
 cmap=slanCM('turbo',numCol);
-cmap(1,:)=[0 0 0];
+%cmap(1,:)=[0 0 0];
 %cmap(end+1,:)=[1 1 1];
 video.Colormap=cmap;
-
 %{
 % Pad beginning of video with additional frames of initial setup
 for i1=1:ceil(length(frames)*.04)
@@ -32,12 +31,11 @@ end
 for i1=1:ceil(length(frames)*.08)
     frames=cat(3,frames,frames(:,:,end));
 end
-
-
+%}
+%{
 for i1=1:length(frames)
     temp=ind2rgb(frames(:,:,i1),cmap);
     average=average+temp;
-    %temp=imresize(temp,[1080 1080],'box');
     %writeVideo(video,temp);
 end
 
@@ -46,6 +44,7 @@ average=imresize(average,[1080 1080],'box');
 imshow(average)
 %}
 
+frames=imresize(frames,[540 540],'box');
 open(video);
 writeVideo(video,frames);
 close(video);
