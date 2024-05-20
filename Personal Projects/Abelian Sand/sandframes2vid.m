@@ -4,8 +4,6 @@ if strcmp(edgeCondition,'grow')==1
     frames=normalizesandsize(frames);
 end
 
-[row,col]=size(frames(:,:,end));
-average=zeros(row,col,3);
 video=VideoWriter(filename,'Indexed AVI');
 framerate=floor(length(frames)/duration);
 video.FrameRate=framerate;
@@ -32,19 +30,23 @@ for i1=1:ceil(length(frames)*.08)
     frames=cat(3,frames,frames(:,:,end));
 end
 %}
-%{
-for i1=1:length(frames)
+frames=imresize(frames,[540 540],'box');
+[row,col]=size(frames(:,:,1));
+average=zeros(row,col,3);
+nFrames=size(frames,3);
+
+for i1=1:nFrames
     temp=ind2rgb(frames(:,:,i1),cmap);
     average=average+temp;
     %writeVideo(video,temp);
 end
 
-average=average/length(frames);
+average=average/nFrames;
 average=imresize(average,[1080 1080],'box');
 imshow(average)
-%}
 
-frames=imresize(frames,[540 540],'box');
+
+
 open(video);
 writeVideo(video,frames);
 close(video);

@@ -1,9 +1,8 @@
-function animator(frames)
-animFilename = 'animation.mp4';
-v=VideoWriter(animFilename,'MPEG-4');
+function animator(frames,filename)
+v=VideoWriter(filename);
 v.Quality=100;
 v.FrameRate=2;
-open(v);
+open(v)
 
 for i1=1:length(frames)
     active=frames(:,:,i1);
@@ -33,9 +32,11 @@ for i1=1:length(frames)
 
     c=colorbar;
     c.Ticks=0:10;
+    clim([0 10]);
     exportgraphics(gca,'temp.png');
     im=imread('temp.png');
     im=imresize(im,[560 730]);
     writeVideo(v,im);
 end
+close(v)
 end

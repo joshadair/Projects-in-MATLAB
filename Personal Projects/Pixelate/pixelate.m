@@ -1,7 +1,5 @@
 function [compressed_cell,fullsize_cell] = pixelate(input_object)
 
-image_filetypes=['.BMP .GIF .HDF .JPEG .JPG .JP2 .JPF .JPX .J2C .J2K .PBM .PCX .PGM .PNG .PNM .PPM .RAS .TIFF .TIF .XWD .CUR .ICO'];
-vid_filetypes=['.AVI .MJ2 .MPG .ASF .WMV .MP4 .M4V .MOV .MPG'];
 compressed_cell={};
 fullsize_cell={};
 
@@ -24,29 +22,29 @@ prompt=[prompt char(10) 'Enter value(s) from above or use "all":'];
 new_pixelGrain=input(prompt,'s');    
     
 if strcmp(new_pixelGrain,'all') == 1        
-    new_pixelGrain_options = cat(2,div_shared,flip(div_shared));        
-    new_pixelGrain_length = length(new_pixelGrain_options);
+    new_pixelGrain_options=cat(2,div_shared,flip(div_shared));        
+    new_pixelGrain_length=length(new_pixelGrain_options);
           
-    if length(input_object) == 1            
+    if length(input_object)==1            
         for count=1:new_pixelGrain_length               
-            input_object{end+1} = input_image;            
+            input_object{end+1}=input_image;            
         end
     end   
 else
-   new_pixelGrain = str2double(new_pixelGrain);
-   new_pixelGrain_options = [new_pixelGrain];
-   new_pixelGrain_length = length(new_pixelGrain_options);
+   new_pixelGrain=str2double(new_pixelGrain);
+   new_pixelGrain_options=new_pixelGrain;
+   new_pixelGrain_length=length(new_pixelGrain_options);
 end
 
 num_cells = length(input_object);
       
 for a=1:num_cells         
-    input_image = im2double(input_object{a});
+    input_image=im2double(input_object{a});
         
-    new_pixelGrain = new_pixelGrain_options(ceil((a/num_cells)*new_pixelGrain_length));    
+    new_pixelGrain=new_pixelGrain_options(ceil((a/num_cells)*new_pixelGrain_length));    
     
-    rSteps = rows/new_pixelGrain;
-    cSteps = cols/new_pixelGrain;
+    rSteps=rows/new_pixelGrain;
+    cSteps=cols/new_pixelGrain;
 
     compressed_image = [];    
     compressed_image(:,:,1) = zeros(rSteps,cSteps);
@@ -61,29 +59,29 @@ for a=1:num_cells
         activeRGB=input_image(:,:,clr);
         for x=1:rSteps                
             for y=1:cSteps               
-                floatColor = 0;                 
-                pixelCount = new_pixelGrain^2;               
+                floatColor=0;                 
+                pixelCount=new_pixelGrain^2;               
                 
                 for n=1:new_pixelGrain                    
                     for m=1:new_pixelGrain                          
-                        floatColor = floatColor + activeRGB(n+(x-1)*new_pixelGrain,m+(y-1)*new_pixelGrain);                    
+                        floatColor=floatColor+activeRGB(n+(x-1)*new_pixelGrain,m+(y-1)*new_pixelGrain);                    
                     end                    
                 end
                                 
-                new_pixelColor = floatColor/pixelCount;           
-                compressed_image(x,y,clr) = new_pixelColor;                
+                new_pixelColor=floatColor/pixelCount;           
+                compressed_image(x,y,clr)=new_pixelColor;                
 
                 for a=1:new_pixelGrain                    
                     for b=1:new_pixelGrain                                                                                  
-                        fullsize_image((x-1)*new_pixelGrain+a,(y-1)*new_pixelGrain+b,clr) = new_pixelColor;                                                    
+                        fullsize_image((x-1)*new_pixelGrain+a,(y-1)*new_pixelGrain+b,clr)=new_pixelColor;                                                    
                     end                    
                 end                
             end            
         end     
     end
     
-    compressed_cell{end+1} = compressed_image;
-    fullsize_cell{end+1} = fullsize_image;
+    compressed_cell{end+1}=compressed_image;
+    fullsize_cell{end+1}=fullsize_image;
     
 end
 
