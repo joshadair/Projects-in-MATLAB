@@ -8,7 +8,7 @@ cmapList={'Parula','Turbo','HSV','Hot','Cool','Winter','Spring','Summer','Autumn
 [indx,~]=listdlg('PromptString',"Please select a colormap from the list below...",'ListString',cmapList,'SelectionMode','single');
 
 %numCol=max(max(max(frames)))-1;
-numCol=12;
+numCol=24;
 cmapName=cat(2,cmapList{indx},'(',num2str(numCol),')');
 cmap=colormap(cmapName);
 %cmap=slanCM('turbo',numCol);
@@ -38,9 +38,9 @@ for i1=1:nFrames
     average=average+temp;
 
     if i1==1
-        imwrite(active,cmap,filename,"gif","LoopCount",Inf,"DelayTime",0.5);
+        imwrite(active,cmap,filename,"gif","LoopCount",Inf,"DelayTime",0.1);
     else
-        imwrite(active,cmap,filename,"gif","WriteMode","append","DelayTime",0.5);
+        imwrite(active,cmap,filename,"gif","WriteMode","append","DelayTime",0.1);
     end
 end
 

@@ -10,10 +10,12 @@ nFrames=size(frames,3);
 for i1=1:nFrames
     active=frames(:,:,i1);
     b=bar3(active);
-    cmap=turbo(12);
+    cmap=turbo(13);
     colormap(cmap);
-    set(gca,'ZLim',[0 11]);
-
+    set(gcf,'ZLim',[0 12]);
+    c=colorbar;
+    c.Ticks=0:12;
+    clim([0 12]);
     %{
     for k=1:length(b)
         zdata=b(k).ZData;
@@ -33,10 +35,6 @@ for i1=1:nFrames
         end
         set(b(i2),'Cdata',zdata)
     end
-
-    c=colorbar;
-    c.Ticks=0:11;
-    clim([0 11]);
 
     if i1==1
         temp=getframe(gcf);
