@@ -12,7 +12,7 @@ for i1=1:nFrames
     b=bar3(active);
     cmap=turbo(13);
     colormap(cmap);
-    set(gca,'ZLim',[0 12]);
+    set(gcf,'ZLim',[0 12]);
     c=colorbar;
     c.Ticks=0:12;
     clim([0 12]);
