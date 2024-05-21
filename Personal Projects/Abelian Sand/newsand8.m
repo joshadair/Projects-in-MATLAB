@@ -17,7 +17,7 @@ while max(max(new))>7
 
     if edge==2
         edges=[initial(1,:),initial(end,:),initial(:,1)',initial(:,end)'];
-        if max(edges)>3
+        if max(edges)>7
             initial=padarray(initial,[1 1]);
             new=initial;
         end
@@ -30,61 +30,61 @@ while max(max(new))>7
             for c=1:col
                 if initial(r,c)>7
                     if r==1 && c==1
-                        new(r+1,c)=new(r+1,c)+1;
                         new(r,c+1)=new(r,c+1)+1;
+                        new(r+1,c)=new(r+1,c)+1;
                         new(r+1,c+1)=new(r+1,c+1)+1;
                         new(r,c)=new(r,c)-8;
                     elseif r==1 && c==col
-                        new(r+1,c)=new(r+1,c)+1;
                         new(r,c-1)=new(r,c-1)+1;
+                        new(r+1,c)=new(r+1,c)+1;
                         new(r+1,c-1)=new(r+1,c-1)+1;
                         new(r,c)=new(r,c)-8;
                     elseif r==row && c==1
                         new(r-1,c)=new(r-1,c)+1;
-                        new(r,c+1)=new(r,c+1)+1;
                         new(r-1,c+1)=new(r-1,c+1)+1;
+                        new(r,c+1)=new(r,c+1)+1;
                         new(r,c)=new(r,c)-8;
                     elseif r==row && c==col
                         new(r-1,c)=new(r-1,c)+1;
-                        new(r,c-1)=new(r,c-1)+1;
                         new(r-1,c-1)=new(r-1,c-1)+1;
+                        new(r,c-1)=new(r,c-1)+1;
                         new(r,c)=new(r,c)-8;
                     elseif r==1
-                        new(r+1,c)=new(r+1,c)+1;
                         new(r,c-1)=new(r,c-1)+1;
                         new(r,c+1)=new(r,c+1)+1;
                         new(r+1,c-1)=new(r+1,c-1)+1;
+                        new(r+1,c)=new(r+1,c)+1;
                         new(r+1,c+1)=new(r+1,c+1)+1;
                         new(r,c)=new(r,c)-8;
                     elseif r==row
+                        new(r-1,c-1)=new(r-1,c-1)+1;
                         new(r-1,c)=new(r-1,c)+1;
+                        new(r-1,c+1)=new(r-1,c+1)+1;
                         new(r,c-1)=new(r,c-1)+1;
                         new(r,c+1)=new(r,c+1)+1;
-                        new(r-1,c-1)=new(r-1,c-1)+1;
-                        new(r-1,c+1)=new(r-1,c+1)+1;
                         new(r,c)=new(r,c)-8;
                     elseif c==1
                         new(r-1,c)=new(r-1,c)+1;
-                        new(r+1,c)=new(r+1,c)+1;
-                        new(r,c+1)=new(r,c+1)+1;
                         new(r-1,c+1)=new(r-1,c+1)+1;
+                        new(r,c+1)=new(r,c+1)+1;
+                        new(r+1,c)=new(r+1,c)+1;
                         new(r+1,c+1)=new(r+1,c+1)+1;
                         new(r,c)=new(r,c)-8;
                     elseif c==col
-                        new(r-1,c)=new(r-1,c)+1;
-                        new(r+1,c)=new(r+1,c)+1;
-                        new(r,c-1)=new(r,c-1)+1;
                         new(r-1,c-1)=new(r-1,c-1)+1;
+                        new(r-1,c)=new(r-1,c)+1;
+                        new(r,c-1)=new(r,c-1)+1;
+                        new(r+1,c)=new(r+1,c)+1;
                         new(r+1,c-1)=new(r+1,c-1)+1;
                         new(r,c)=new(r,c)-8;
                     else
+                        new(r-1,c-1)=new(r-1,c-1)+1;
                         new(r-1,c)=new(r-1,c)+1;
-                        new(r+1,c)=new(r+1,c)+1;
+                        new(r-1,c+1)=new(r-1,c+1)+1;
                         new(r,c-1)=new(r,c-1)+1;
                         new(r,c+1)=new(r,c+1)+1;
-                        new(r-1,c-1)=new(r-1,c-1)+1;
                         new(r+1,c-1)=new(r+1,c-1)+1;
-                        new(r-1,c+1)=new(r-1,c+1)+1;
+                        new(r+1,c)=new(r+1,c)+1;
                         new(r+1,c+1)=new(r+1,c+1)+1;
                         new(r,c)=new(r,c)-8;
                     end
@@ -115,7 +115,7 @@ while max(max(new))>7
         %new(new<0)=0;
         frames{end+1}=new;
     end
-    
+
 end
 
 end

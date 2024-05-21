@@ -1,14 +1,18 @@
 function animator(frames,filename)
+%{
 v=VideoWriter(filename);
 v.Quality=100;
 v.FrameRate=2;
 open(v)
+%}
+nFrames=size(frames,3);
 
-for i1=1:length(frames)
+for i1=1:nFrames
     active=frames(:,:,i1);
     b=bar3(active);
-    colormap(turbo(10));
-    set(gca,'ZLim',[0 10]);
+    cmap=turbo(12);
+    colormap(cmap);
+    set(gca,'ZLim',[0 11]);
 
     %{
     for k=1:length(b)
@@ -31,12 +35,28 @@ for i1=1:length(frames)
     end
 
     c=colorbar;
-    c.Ticks=0:10;
-    clim([0 10]);
+    c.Ticks=0:11;
+    clim([0 11]);
+
+    if i1==1
+        temp=getframe(gcf);
+        temp=frame2im(temp);
+        [temp,map]=rgb2ind(temp,256);
+        imwrite(temp,map,filename,"gif","LoopCount",Inf,"DelayTime",0.5);
+    else
+        temp=getframe(gcf);
+        temp=frame2im(temp);
+        [temp,map]=rgb2ind(temp,256);
+        imwrite(temp,map,filename,"gif","WriteMode","append","DelayTime",0.5);
+    end
+
+%{
     exportgraphics(gca,'temp.png');
     im=imread('temp.png');
     im=imresize(im,[560 730]);
     writeVideo(v,im);
+%}
+
 end
-close(v)
+%close(v)
 end
