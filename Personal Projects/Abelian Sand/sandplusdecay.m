@@ -55,6 +55,14 @@ while max(max(new))>11
                         new(r,c-2)=new(r,c-2)+1;
                         new(r+2,c)=new(r+2,c)+1;
                         new(r,c)=new(r,c)-12;
+                    elseif r==1
+                        new(r,c-1)=new(r,c-1)+2;
+                        new(r,c+1)=new(r,c+1)+2;
+                        new(r+1,c)=new(r+1,c)+2;
+                        new(r,c-2)=new(r,c-2)+1;
+                        new(r,c+2)=new(r,c+2)+1;
+                        new(r+2,c)=new(r+2,c)+1;
+                        new(r,c)=new(r,c)-12;
                     elseif r==2 && c==1
                         new(r-1,c)=new(r-1,c)+2;
                         new(r,c+1)=new(r,c+1)+2;
@@ -83,6 +91,15 @@ while max(max(new))>11
                         new(r,c-1)=new(r,c-1)+2;
                         new(r+1,c)=new(r+1,c)+2;
                         new(r,c-2)=new(r,c-2)+1;
+                        new(r+2,c)=new(r+2,c)+1;
+                        new(r,c)=new(r,c)-12;
+                    elseif r==2
+                        new(r-1,c)=new(r-1,c)+2;
+                        new(r,c-1)=new(r,c-1)+2;
+                        new(r,c+1)=new(r,c+1)+2;
+                        new(r+1,c)=new(r+1,c)+2;
+                        new(r,c-2)=new(r,c-2)+1;
+                        new(r,c+2)=new(r,c+2)+1;
                         new(r+2,c)=new(r+2,c)+1;
                         new(r,c)=new(r,c)-12;
                     elseif r==row-1 && c==1
@@ -141,37 +158,11 @@ while max(max(new))>11
                         new(r-2,c)=new(r-2,c)+1;
                         new(r,c-2)=new(r,c-2)+1;
                         new(r,c)=new(r,c)-12;
-                    elseif r==1
-                        new(r,c-1)=new(r,c-1)+2;
-                        new(r,c+1)=new(r,c+1)+2;
-                        new(r+1,c)=new(r+1,c)+2;
-                        new(r,c-2)=new(r,c-2)+1;
-                        new(r,c+2)=new(r,c+2)+1;
-                        new(r+2,c)=new(r+2,c)+1;
-                        new(r,c)=new(r,c)-12;
-                    elseif r==2
-                        new(r-1,c)=new(r-1,c)+2;
-                        new(r,c-1)=new(r,c-1)+2;
-                        new(r,c+1)=new(r,c+1)+2;
-                        new(r+1,c)=new(r+1,c)+2;
-                        new(r,c-2)=new(r,c-2)+1;
-                        new(r,c+2)=new(r,c+2)+1;
-                        new(r+2,c)=new(r+2,c)+1;
-                        new(r,c)=new(r,c)-12;
-
                     elseif r==row-1
                         new(r-1,c)=new(r-1,c)+2;
                         new(r,c-1)=new(r,c-1)+2;
                         new(r,c+1)=new(r,c+1)+2;
                         new(r+1,c)=new(r+1,c)+2;
-                        new(r-2,c)=new(r-2,c)+1;
-                        new(r,c-2)=new(r,c-2)+1;
-                        new(r,c+2)=new(r,c+2)+1;
-                        new(r,c)=new(r,c)-12;
-                    elseif r==row
-                        new(r-1,c)=new(r-1,c)+2;
-                        new(r,c-1)=new(r,c-1)+2;
-                        new(r,c+1)=new(r,c+1)+2;
                         new(r-2,c)=new(r-2,c)+1;
                         new(r,c-2)=new(r,c-2)+1;
                         new(r,c+2)=new(r,c+2)+1;
@@ -209,6 +200,14 @@ while max(max(new))>11
                         new(r-2,c)=new(r-2,c)+1;
                         new(r,c-2)=new(r,c-2)+1;
                         new(r+2,c)=new(r+2,c)+1;
+                        new(r,c)=new(r,c)-12;
+                    elseif r==row
+                        new(r-1,c)=new(r-1,c)+2;
+                        new(r,c-1)=new(r,c-1)+2;
+                        new(r,c+1)=new(r,c+1)+2;
+                        new(r-2,c)=new(r-2,c)+1;
+                        new(r,c-2)=new(r,c-2)+1;
+                        new(r,c+2)=new(r,c+2)+1;
                         new(r,c)=new(r,c)-12;
                     else
                         new(r-1,c)=new(r-1,c)+2;

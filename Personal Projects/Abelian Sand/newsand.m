@@ -37,6 +37,11 @@ while max(max(new))>3
                         new(r+1,c)=new(r+1,c)+1;
                         new(r,c-1)=new(r,c-1)+1;
                         new(r,c)=new(r,c)-4;
+                    elseif r==1
+                        new(r+1,c)=new(r+1,c)+1;
+                        new(r,c-1)=new(r,c-1)+1;
+                        new(r,c+1)=new(r,c+1)+1;
+                        new(r,c)=new(r,c)-4;
                     elseif r==row && c==1
                         new(r-1,c)=new(r-1,c)+1;
                         new(r,c+1)=new(r,c+1)+1;
@@ -44,16 +49,6 @@ while max(max(new))>3
                     elseif r==row && c==col
                         new(r-1,c)=new(r-1,c)+1;
                         new(r,c-1)=new(r,c-1)+1;
-                        new(r,c)=new(r,c)-4;
-                    elseif r==1
-                        new(r+1,c)=new(r+1,c)+1;
-                        new(r,c-1)=new(r,c-1)+1;
-                        new(r,c+1)=new(r,c+1)+1;
-                        new(r,c)=new(r,c)-4;
-                    elseif r==row
-                        new(r-1,c)=new(r-1,c)+1;
-                        new(r,c-1)=new(r,c-1)+1;
-                        new(r,c+1)=new(r,c+1)+1;
                         new(r,c)=new(r,c)-4;
                     elseif c==1
                         new(r-1,c)=new(r-1,c)+1;
@@ -64,6 +59,11 @@ while max(max(new))>3
                         new(r-1,c)=new(r-1,c)+1;
                         new(r+1,c)=new(r+1,c)+1;
                         new(r,c-1)=new(r,c-1)+1;
+                        new(r,c)=new(r,c)-4;
+                    elseif r==row
+                        new(r-1,c)=new(r-1,c)+1;
+                        new(r,c-1)=new(r,c-1)+1;
+                        new(r,c+1)=new(r,c+1)+1;
                         new(r,c)=new(r,c)-4;
                     else
                         new(r-1,c)=new(r-1,c)+1;
@@ -93,7 +93,7 @@ while max(max(new))>3
         end
         frames{end+1}=new;
     end
-    
+
 end
 
 end

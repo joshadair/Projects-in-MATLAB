@@ -39,6 +39,13 @@ while max(max(new))>7
                         new(r+1,c)=new(r+1,c)+1;
                         new(r+1,c-1)=new(r+1,c-1)+1;
                         new(r,c)=new(r,c)-8;
+                    elseif r==1
+                        new(r,c-1)=new(r,c-1)+1;
+                        new(r,c+1)=new(r,c+1)+1;
+                        new(r+1,c-1)=new(r+1,c-1)+1;
+                        new(r+1,c)=new(r+1,c)+1;
+                        new(r+1,c+1)=new(r+1,c+1)+1;
+                        new(r,c)=new(r,c)-8;
                     elseif r==row && c==1
                         new(r-1,c)=new(r-1,c)+1;
                         new(r-1,c+1)=new(r-1,c+1)+1;
@@ -48,20 +55,6 @@ while max(max(new))>7
                         new(r-1,c)=new(r-1,c)+1;
                         new(r-1,c-1)=new(r-1,c-1)+1;
                         new(r,c-1)=new(r,c-1)+1;
-                        new(r,c)=new(r,c)-8;
-                    elseif r==1
-                        new(r,c-1)=new(r,c-1)+1;
-                        new(r,c+1)=new(r,c+1)+1;
-                        new(r+1,c-1)=new(r+1,c-1)+1;
-                        new(r+1,c)=new(r+1,c)+1;
-                        new(r+1,c+1)=new(r+1,c+1)+1;
-                        new(r,c)=new(r,c)-8;
-                    elseif r==row
-                        new(r-1,c-1)=new(r-1,c-1)+1;
-                        new(r-1,c)=new(r-1,c)+1;
-                        new(r-1,c+1)=new(r-1,c+1)+1;
-                        new(r,c-1)=new(r,c-1)+1;
-                        new(r,c+1)=new(r,c+1)+1;
                         new(r,c)=new(r,c)-8;
                     elseif c==1
                         new(r-1,c)=new(r-1,c)+1;
@@ -76,6 +69,13 @@ while max(max(new))>7
                         new(r,c-1)=new(r,c-1)+1;
                         new(r+1,c)=new(r+1,c)+1;
                         new(r+1,c-1)=new(r+1,c-1)+1;
+                        new(r,c)=new(r,c)-8;
+                    elseif r==row
+                        new(r-1,c-1)=new(r-1,c-1)+1;
+                        new(r-1,c)=new(r-1,c)+1;
+                        new(r-1,c+1)=new(r-1,c+1)+1;
+                        new(r,c-1)=new(r,c-1)+1;
+                        new(r,c+1)=new(r,c+1)+1;
                         new(r,c)=new(r,c)-8;
                     else
                         new(r-1,c-1)=new(r-1,c-1)+1;

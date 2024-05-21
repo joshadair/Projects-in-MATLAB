@@ -6,16 +6,17 @@ v.FrameRate=2;
 open(v)
 %}
 nFrames=size(frames,3);
+maxFrames=max(max(max(frames)));
+cmap=turbo(1+maxFrames);
 
 for i1=1:nFrames
     active=frames(:,:,i1);
-    b=bar3(active);
-    cmap=turbo(13);
+    b=bar3(active);  
     colormap(cmap);
-    set(gcf,'ZLim',[0 12]);
+    set(gca,'ZLim',[0 maxFrames]);
     c=colorbar;
-    c.Ticks=0:12;
-    clim([0 12]);
+    c.Ticks=0:maxFrames;
+    clim([0 maxFrames]);
     %{
     for k=1:length(b)
         zdata=b(k).ZData;
