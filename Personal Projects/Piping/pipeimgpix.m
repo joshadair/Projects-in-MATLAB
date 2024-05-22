@@ -1,4 +1,4 @@
-function frames=pipeimgpix(img)
+function [frames,alphaFrames]=pipeimgpix(img)
 img=im2double(img);
 [rowS,colS,~]=size(img);
 
@@ -16,10 +16,12 @@ index=zeros(rowS/newPixGrain,colS/newPixGrain);
 frames=[];
 out=zeros(rowS,colS,3);
 frames=cat(4,frames,out);
+alphaFrames=zeros(rowS,colS);
 
 start=randi(rowI*colI);
 [row,col]=ind2sub([rowI colI],start);
 index(row,col)=1;
+shading=index*5;
 out((row-1)*newPixGrain+1:row*newPixGrain,(col-1)*newPixGrain+1:col*newPixGrain,:)=img((row-1)*newPixGrain+1:row*newPixGrain,(col-1)*newPixGrain+1:col*newPixGrain,:);
 prev=0;
 counter=2;
@@ -48,29 +50,39 @@ while ~all(index,'all')
 
     switch next
         case 1
+            shading=shading-1;
             row=row-1;
             index(row,col)=counter;
+            shading(row,col)=5;
             out((row-1)*newPixGrain+1:row*newPixGrain,(col-1)*newPixGrain+1:col*newPixGrain,:)=img((row-1)*newPixGrain+1:row*newPixGrain,(col-1)*newPixGrain+1:col*newPixGrain,:);
             prev=3;
         case 2
+            shading=shading-1;
             col=col+1;
             index(row,col)=counter;
+            shading(row,col)=5;
             out((row-1)*newPixGrain+1:row*newPixGrain,(col-1)*newPixGrain+1:col*newPixGrain,:)=img((row-1)*newPixGrain+1:row*newPixGrain,(col-1)*newPixGrain+1:col*newPixGrain,:);
             prev=4;
         case 3
+            shading=shading-1;
             row=row+1;
             index(row,col)=counter;
+            shading(row,col)=5;
             out((row-1)*newPixGrain+1:row*newPixGrain,(col-1)*newPixGrain+1:col*newPixGrain,:)=img((row-1)*newPixGrain+1:row*newPixGrain,(col-1)*newPixGrain+1:col*newPixGrain,:);
             prev=1;
         case 4
+            shading=shading-1;
             col=col-1;
             index(row,col)=counter;
+            shading(row,col)=5;
             out((row-1)*newPixGrain+1:row*newPixGrain,(col-1)*newPixGrain+1:col*newPixGrain,:)=img((row-1)*newPixGrain+1:row*newPixGrain,(col-1)*newPixGrain+1:col*newPixGrain,:);
             prev=2;
     end
-
+    shading=double(shading>0).*shading;
+    tempshading=imresize(shading,[rowS colS],'box');
     counter=counter+1;
     frames=cat(4,frames,out);
+    alphaFrames=cat(3,alphaFrames,tempshading);
 end
 
 %cell2vid(frames,'pipeart.mp4',60);
