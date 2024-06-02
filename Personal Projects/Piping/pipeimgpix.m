@@ -101,8 +101,12 @@ while ~all(index,'all') && trigger==0
 
 end
 
-%cell2vid(frames,'pipeart.mp4',60);
-
+v=VideoWriter('new.avi');
+fRate=size(frames,4)/10;
+v.FrameRate=fRate;
+open(v)
+writeVideo(v,frames);
+close(v)
 end
 
 

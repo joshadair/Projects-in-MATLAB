@@ -3,7 +3,8 @@ nFrames=size(frames,4);
 
 for i1=1:nFrames
     active=frames(:,:,:,i1);
-    imshow(active);
+    imshow(active)
+    set(gcf,'color','black')
     alpha('scaled');
     alpha(alphaFrames(:,:,i1));
     if i1==1
