@@ -1,15 +1,20 @@
-function [frames]=pipeart(n)
-frames={};
+function frames=pipeart(n)
+frames=[];
 out=zeros(n);
-frames{end+1}=out;
+frames=cat(3,frames,out);
 start=randi(n^2);
 out(start)=1;
-frames{end+1}=out;
+frames=cat(3,frames,out);
 [row,col]=ind2sub(n,start);
+initR=row;
+initC=col;
 prev=0;
 counter=2;
 
-while ~all(out,'all')
+index=out;
+trigger=0;
+
+while ~all(index,'all') && trigger==0
     next=[1,2,3,4];
     if row==1 && col==1
         next=[2,3];
@@ -32,24 +37,42 @@ while ~all(out,'all')
     next=next(randi(length(next)));
     switch next
         case 1
+            out=out-1;
             row=row-1;
+            index(row,col)=counter;
             out(row,col)=counter;
             prev=3;
         case 2
+            out=out-1;
             col=col+1;
+            index(row,col)=counter;
             out(row,col)=counter;
             prev=4;
         case 3
+            out=out-1;
             row=row+1;
+            index(row,col)=counter;
             out(row,col)=counter;
             prev=1;
         case 4
+            out=out-1;
             col=col-1;
+            index(row,col)=counter;
             out(row,col)=counter;
             prev=2;
     end
+
+    out=double(out>0).*out;
     counter=counter+1;
-    frames{end+1}=out;
+    frames=cat(3,frames,out);
+
+     if all(index,'all')
+        if row==initR && col==initC
+            trigger=1;
+        end
+    end
+
+
 end
 
 %cell2vid(frames,'pipeart.mp4',60);

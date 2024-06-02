@@ -41,12 +41,12 @@ for i1=1:nFrames
         temp=getframe(gcf);
         temp=frame2im(temp);
         [temp,map]=rgb2ind(temp,256);
-        imwrite(temp,map,filename,"gif","LoopCount",Inf,"DelayTime",0.5);
+        imwrite(temp,map,filename,"gif","LoopCount",Inf,"DelayTime",0.1);
     else
         temp=getframe(gcf);
         temp=frame2im(temp);
         [temp,map]=rgb2ind(temp,256);
-        imwrite(temp,map,filename,"gif","WriteMode","append","DelayTime",0.5);
+        imwrite(temp,map,filename,"gif","WriteMode","append","DelayTime",0.1);
     end
 
 %{

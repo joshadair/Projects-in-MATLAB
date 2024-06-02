@@ -22,9 +22,9 @@ for i1=1:nFrames
     average=average+temp;
 
     if i1==1
-        imwrite(active,cmap,filename,"gif","LoopCount",Inf,"DelayTime",0.5);
+        imwrite(active,cmap,filename,"gif","LoopCount",Inf,"DelayTime",0.1);
     else
-        imwrite(active,cmap,filename,"gif","WriteMode","append","DelayTime",0.5);
+        imwrite(active,cmap,filename,"gif","WriteMode","append","DelayTime",0.1);
     end
 end
 
