@@ -1,4 +1,4 @@
-function average=sandframes2vid(frames,edgeCondition,filename,duration)
+function average=sandframes2vid(frames,edgeCondition,filename,framerate)
 
 if strcmp(edgeCondition,'grow')==1
     frames=normalizesandsize(frames);
@@ -6,8 +6,7 @@ end
 
 frames=frames+1;
 
-v=VideoWriter(filename,'Indexed AVI');
-framerate=floor(length(frames)/duration);
+v=VideoWriter(filename,'MPEG-4');
 v.FrameRate=framerate;
 
 cmapList={'Parula','Turbo','HSV','Hot','Cool','Winter','Spring','Summer','Autumn','Sky','Abyss'};
@@ -15,8 +14,8 @@ cmapList={'Parula','Turbo','HSV','Hot','Cool','Winter','Spring','Summer','Autumn
 numCol=max(max(max(frames)));
 cmapName=cat(2,cmapList{indx},'(',num2str(numCol),')');
 cmap=colormap(cmapName);
-v.Colormap=cmap;
-%{
+%v.Colormap=cmap;
+
 [row,col,nFrames]=size(frames);
 average=zeros(row,col);
 for i1=1:nFrames
@@ -37,7 +36,7 @@ for i1=1:ceil(length(frames)*.08)
     frames=cat(3,frames,frames(:,:,end));
 end
 %}
-frames=imresize(frames,[360 360],'box');
+frames=imresize(frames,[720 720],'box');
 
 open(v);
 writeVideo(v,frames);

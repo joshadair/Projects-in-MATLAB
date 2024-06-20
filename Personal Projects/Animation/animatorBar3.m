@@ -1,4 +1,7 @@
-function animator(frames,filename)
+function animatorBar3(frames,filename)
+% plots frames of sandpiles using bar3() and combines image frames into
+% GIF animation
+
 %{
 v=VideoWriter(filename);
 v.Quality=100;
@@ -41,12 +44,12 @@ for i1=1:nFrames
         temp=getframe(gcf);
         temp=frame2im(temp);
         [temp,map]=rgb2ind(temp,256);
-        imwrite(temp,map,filename,"gif","LoopCount",Inf,"DelayTime",0.1);
+        imwrite(temp,map,filename,"gif","LoopCount",Inf,"DelayTime",0.5);
     else
         temp=getframe(gcf);
         temp=frame2im(temp);
         [temp,map]=rgb2ind(temp,256);
-        imwrite(temp,map,filename,"gif","WriteMode","append","DelayTime",0.1);
+        imwrite(temp,map,filename,"gif","WriteMode","append","DelayTime",0.5);
     end
 
 %{
