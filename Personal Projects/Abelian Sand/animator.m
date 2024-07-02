@@ -1,5 +1,5 @@
 function animator(frames,filename)
-% creates GIF of 3D bar graph visual of sandpiles
+% creates GIF from 3D bar graph of sandpiles
 
 %{
 v=VideoWriter(filename);
@@ -17,7 +17,7 @@ for i1=1:nFrames
     colormap(cmap);
     set(gca,'ZLim',[0 maxFrames]);
     c=colorbar;
-    c.Ticks=0:maxFrames;
+    c.Ticks=0:10:maxFrames;
     clim([0 maxFrames]);
     %{
     for k=1:length(b)

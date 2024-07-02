@@ -1,4 +1,5 @@
 function animator2(frames,alphaFrames,filename)
+% creates GIF from frames of current figure
 nFrames=size(frames,4);
 
 for i1=1:nFrames

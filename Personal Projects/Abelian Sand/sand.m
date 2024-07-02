@@ -1,4 +1,4 @@
-function frames=sand(in,edge)
+function frames=sand(in,pattern,edge)
 
 if strcmp(edge,'falloff')==1
     edge=1;
@@ -12,46 +12,17 @@ end
 [row,col]=size(in);
 new=in;
 
-while max(max(new))>3
-    in=new;
-
-    if edge==2
-        edges=[in(1,:),in(end,:),in(:,1)',in(:,end)'];
-        if max(edges)>3
-            in=padarray(in,[1 1]);
-            new=in;
-        end
-    end
-
-    % If using falloff condition for edges of table, need to
-    % account for critical points at pile corners and edges
-    if edge==1
-        for r=1:row
-            for c=1:col
-                if in(r,c)>3
-                   try new(r-1,c)=new(r-1,c)+1;
-                    catch
-                    end
-                    try new(r+1,c)=new(r+1,c)+1;
-                    catch
-                    end
-                    try new(r,c-1)=new(r,c-1)+1;
-                    catch
-                    end
-                    try new(r,c+1)=new(r,c+1)+1;
-                    catch
-                    end
-                    try new(r,c)=new(r,c)-4;
-                    catch
-                    end
-                end
+if strcmp(pattern,'plus')==1
+    while max(max(new))>3
+        in=new;
+        if edge==2
+            edges=[in(1,:),in(end,:),in(:,1)',in(:,end)'];
+            if max(edges)>3
+                in=padarray(in,[1 1]);
+                new=in;
             end
         end
-        frames=cat(3,frames,new);
-    end
 
-    if edge==2
-        [row,col]=size(in);
         for r=1:row
             for c=1:col
                 if in(r,c)>3
@@ -73,9 +44,112 @@ while max(max(new))>3
                 end
             end
         end
-        frames{end+1}=new;
+        if edge==1
+            frames=cat(3,frames,new);
+        elseif edge==2
+            frames{end+1}=new;
+        end
     end
-
 end
 
+if strcmp(pattern,'decay8')==1
+    while max(max(new))>31
+        in=new;
+        if edge==2
+            edges=[in(1,:),in(end,:),in(:,1)',in(:,end)'];
+            if max(edges)>31
+                in=padarray(in,[1 1]);
+                new=in;
+            end
+        end
+
+        for r=1:row
+            for c=1:col
+                if in(r,c)>31
+                    % inner ring
+                    try new(r-1,c-1)=new(r-1,c-1)+2;
+                    catch
+                    end
+                    try new(r-1,c)=new(r-1,c)+2;
+                    catch
+                    end
+                    try new(r-1,c+1)=new(r-1,c+1)+2;
+                    catch
+                    end  
+                    try new(r,c-1)=new(r,c-1)+2;
+                    catch
+                    end
+                    try new(r,c+1)=new(r,c+1)+2;
+                    catch
+                    end
+                    try new(r+1,c-1)=new(r+1,c-1)+2;
+                    catch
+                    end
+                    try new(r+1,c)=new(r+1,c)+2;
+                    catch
+                    end
+                    try new(r+1,c+1)=new(r+1,c+1)+2;
+                    catch
+                    end
+
+                    % outer ring
+                    try new(r-2,c-2)=new(r-2,c-2)+1;
+                    catch
+                    end
+                    try new(r-2,c-1)=new(r-2,c-1)+1;
+                    catch
+                    end
+                    try new(r-2,c)=new(r-2,c)+1;
+                    catch
+                    end
+                    try new(r-2,c+1)=new(r-2,c+1)+1;
+                    catch
+                    end
+                    try new(r-2,c+2)=new(r-2,c+2)+1;
+                    catch
+                    end
+                    try new(r-1,c-2)=new(r-1,c-2)+1;
+                    catch
+                    end
+                    try new(r-1,c+2)=new(r-1,c+2)+1;
+                    catch
+                    end
+                    try new(r,c-2)=new(r,c-2)+1;
+                    catch
+                    end
+                    try new(r,c+2)=new(r,c+2)+1;
+                    catch
+                    end
+                    try new(r+1,c-2)=new(r+1,c-2)+1;
+                    catch
+                    end
+                    try new(r+1,c+2)=new(r+1,c+2)+1;
+                    catch
+                    end
+                    try new(r+2,c-2)=new(r+2,c-2)+1;
+                    catch
+                    end
+                    try new(r+2,c-1)=new(r+2,c-1)+1;
+                    catch
+                    end
+                    try new(r+2,c)=new(r+2,c)+1;
+                    catch
+                    end
+                    try new(r+2,c+1)=new(r+2,c+1)+1;
+                    catch
+                    end
+                    try new(r+2,c+2)=new(r+2,c+2)+1;
+                    catch
+                    end
+                    new(r,c)=new(r,c)-32;
+                end
+            end
+        end
+        if edge==1
+            frames=cat(3,frames,new);
+        elseif edge==2
+            frames{end+1}=new;
+        end
+    end
+end
 end
