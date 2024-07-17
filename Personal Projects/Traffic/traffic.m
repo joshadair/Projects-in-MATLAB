@@ -1,30 +1,55 @@
-function frames=traffic(n,direction)
+function frames=traffic(n,nColors,spacing)
 frames=[];
 a=zeros(n);
+frames=cat(3,frames,a);
 
 for i1=1:n
-    a(end,i1)=randi(5);
+    a(end,i1)=randi(nColors);
 end
 
-frames(end+1)=a;
+count=0;
+while any(any(a)) && size(frames,3)<1000
+    %frames=cat(3,frames,a);
 
-for i1=1:n
-    rate=a(end,i1);
-    space=a(end-rate:end,i1)
-    a(end-rate,i1)=rate;
-    a(end,i1)=0;
+    for i1=1:n
+        col=a(:,i1);
+        cars=(find(col>0));
+        for i2=1:numel(cars)
+            col=a(:,i1);
+            position=cars(i2);
+            rate=col(position);
+            if i2==1
+                space=col(1:position-1);
+            else
+                try space=col(position-rate:position-1);
+                catch
+                    space=col(1:position-1);
+                end
+            end
 
-    switch a(end,i1)
-        case 1
-            
-        case 2
-    
+            if ~any(space)
+                try a(position-rate,i1)=rate;
+                catch
+                end
+            else
+                try a(position-(length(space)-find(space~=0,1,'last')),i1)=rate;
+                catch
+                end
+            end
+            a(position,i1)=0;
+        end
+    end
+    frames=cat(3,frames,a);
+    count=count+1;
+
+    if mod(count,spacing)==0 
+        for i1=1:n
+            a(end,i1)=randi(nColors);
+        end
+        %frames=cat(3,frames,a);
     end
 
-        
 end
 
-
-
-
 end
+
