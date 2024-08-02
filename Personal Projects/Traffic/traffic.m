@@ -31,7 +31,7 @@ while any(any(a)) && size(frames,3)<1000
                 catch
                 end
             else
-                try a(i2-(length(space)-find(space~=0,1,'last')),i1)=rate;
+                try a(i2-(length(space)-find(space~=0,1,'first')),i1)=rate;
                 catch
                 end
             end
