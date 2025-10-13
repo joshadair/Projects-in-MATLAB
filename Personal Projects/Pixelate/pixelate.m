@@ -38,10 +38,10 @@ end
 
 num_cells = length(input_object);
       
-for a=1:num_cells         
-    input_image=im2double(input_object{a});
+for i1=1:num_cells         
+    input_image=im2double(input_object{i1});
         
-    new_pixelGrain=new_pixelGrain_options(ceil((a/num_cells)*new_pixelGrain_length));    
+    new_pixelGrain=new_pixelGrain_options(ceil((i1/num_cells)*new_pixelGrain_length));    
     
     rSteps=rows/new_pixelGrain;
     cSteps=cols/new_pixelGrain;
